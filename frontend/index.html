@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Code Conversion, Debugging, and Quality Check Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs/editor/editor.main.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+    <div class="container">
+        <h1>Application for Code Conversion, Debugging, and Quality Check</h1>
+        <div id="editor"></div>
+        <div>
+            <select id="languageSelect">
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="javascript">JavaScript</option>
+                <option value="c">c</option>
+                <option value="rust">rust</option>
+                <option value="go">go</option>
+            </select>
+        </div>
+        <div id="buttons">
+            <button onclick="convertCode()">Convert</button>
+            <button onclick="debugCode()">Debug</button>
+            <button onclick="performQualityCheck()">Check Quality</button>
+        </div>
+        <div>
+            <h2>Output</h2>
+            <pre id="output">Please enter anyone of the button and wait for the output &#129302</pre>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs/loader.js"></script>
+    <script>
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            var editor = monaco.editor.create(document.getElementById('editor'), {
+                value: '// Write the code here\n',
+                language: 'javascript,java,python,c,go,rust,typescript',
+                theme: 'vs-dark',
+                minimap: {
+                    enabled: true,
+                    scale: 2*999 // Adjust the scale value as needed
+                }
+            });
+
+            window.convertCode = function() {
+                var code = editor.getValue();
+                var languageSelect = document.getElementById('languageSelect');
+                var targetLanguage = languageSelect.options[languageSelect.selectedIndex].value;
+
+                // Make a request to the backend API for code conversion
+                fetch('https://code-wg14.onrender.com/convert', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code: code, language: targetLanguage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    document.getElementById('output').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
+
+            window.debugCode = function() {
+                var code = editor.getValue();
+
+                // Make a request to the backend API for code debugging
+                fetch('https://code-wg14.onrender.com/debug', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code: code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
+
+            window.performQualityCheck = function() {
+                var code = editor.getValue();
+
+                //Make a request to the backend API for code quality check
+                fetch('https://code-wg14.onrender.com/qualitycheck', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code: code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
+        });
+    </script>
+</body>
+</html>
