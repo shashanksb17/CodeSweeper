@@ -54,7 +54,7 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please debug this code ${codeInput} and explain in points `,
+      prompt: `Please debug this code ${codeInput} and explain in 2-5 pionters each pionter has 5-8 words `,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
