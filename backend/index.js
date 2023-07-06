@@ -54,7 +54,7 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please debug this code ${codeInput}`,
+      prompt: `Please debug this code ${codeInput} and explain in points `,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
@@ -71,6 +71,7 @@ app.post("/debug", async (req, res) => {
   }
 });
 
+
 app.post("/qualitycheck", async (req, res) => {
   const codeInput = req.body.code;
 
@@ -79,10 +80,9 @@ app.post("/qualitycheck", async (req, res) => {
       return res.send({ message: "No code was provided" });
     }
 
-
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please check the quality of this following code and give the input in from of points each pint should containd 71 letters if greater then move to next line by \n: ${codeInput}`,
+      prompt: `Please check the quality of this following code and explain how code can be improved in points and rate the code with max points of 10 ${codeInput}`,
       max_tokens: 1000,
     });
 

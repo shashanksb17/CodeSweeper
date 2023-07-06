@@ -37,12 +37,8 @@
         require(['vs/editor/editor.main'], function() {
             var editor = monaco.editor.create(document.getElementById('editor'), {
                 value: '// Write the code here\n',
-                language: 'javascript,java,python,c,go,rust,typescript',
-                theme: 'vs-dark',
-                minimap: {
-                    enabled: true,
-                    scale: 2*999 // Adjust the scale value as needed
-                }
+                language: 'javascript',
+                theme: 'vs-dark'
             });
 
             window.convertCode = function() {
