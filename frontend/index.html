@@ -47,7 +47,7 @@
                 var targetLanguage = languageSelect.options[languageSelect.selectedIndex].value;
 
                 // Make a request to the backend API for code conversion
-                fetch('https://code-wg14.onrender.com/convert', {
+                fetch('https://code-generator-bouw.onrender.com/convert', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -68,7 +68,7 @@
                 var code = editor.getValue();
 
                 // Make a request to the backend API for code debugging
-                fetch('https://code-wg14.onrender.com/debug', {
+                fetch('https://code-generator-bouw.onrender.com/debug', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -88,7 +88,7 @@
                 var code = editor.getValue();
 
                 //Make a request to the backend API for code quality check
-                fetch('https://code-wg14.onrender.com/qualitycheck', {
+                fetch('https://code-generator-bouw.onrender.com/qualitycheck', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

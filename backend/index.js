@@ -82,7 +82,7 @@ app.post("/qualitycheck", async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please check the quality of this following code and explain how code can be improved in points and rate the code with max points of 10 ${codeInput}`,
+      prompt: `Please check the quality of this following code and explain how code can be improved in 3 to 6 points each pionts is limites to 60 letters and rate the code with max points of 10 ${codeInput}`,
       max_tokens: 1000,
     });
 
