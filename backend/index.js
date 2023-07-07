@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.static("public"));
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -54,7 +54,7 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please debug this code ${codeInput} and explain in 2-5 pionters each pionter has 5-8 words `,
+      prompt: `Please debug this code ${codeInput}`,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
@@ -71,7 +71,6 @@ app.post("/debug", async (req, res) => {
   }
 });
 
-
 app.post("/qualitycheck", async (req, res) => {
   const codeInput = req.body.code;
 
@@ -82,7 +81,7 @@ app.post("/qualitycheck", async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please check the quality of this following code and explain how code can be improved in 2-5 pionters each pionter has 5-8 words and rate the code with max points of 10 ${codeInput}`,
+      prompt: `Please check the quality of this following code: ${codeInput}`,
       max_tokens: 1000,
     });
 
