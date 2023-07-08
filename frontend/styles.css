@@ -9,19 +9,16 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
-/* .body {
+.body {
     background-image: url("/giphy.gif");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     backdrop-filter: grayscale(60%);;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-} */
+
+    z-index: 10;
+}
 
 h1 {
     color: #333;
