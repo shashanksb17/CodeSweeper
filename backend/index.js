@@ -54,7 +54,7 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please debug this code ${codeInput}`,
+      prompt: `Please debug this code ${codeInput} and explain in 1-3 pointers each pionter has 5-8 words`,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
@@ -81,7 +81,7 @@ app.post("/qualitycheck", async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please check the quality of this following code: ${codeInput}`,
+      prompt: `Please check the quality of this following code: ${codeInput} and explain how code can be improved in 2-5 pionters each pionter has 5-8 words and rate the code with max points of 10`,
       max_tokens: 1000,
     });
 
