@@ -34,9 +34,14 @@ app.post("/convert", async (req, res) => {
     console.log(response.data.choices[0].text);
     res.send({ message: response.data.choices[0].text });
   } catch (error) {
-
+    console.log("entered here");
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+      res.send("Error");
+    } else {
       console.log(error.message);
-
+    }
   }
 });
 
@@ -55,10 +60,14 @@ app.post("/debug", async (req, res) => {
     console.log(response.data.choices[0].text);
     return res.send({ message: response.data.choices[0].text });
   } catch (error) {
-
-
-    console.log(error.message);
-
+    console.log("entered here");
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+      res.send("Error");
+    } else {
+      console.log(error.message);
+    }
   }
 });
 
@@ -79,10 +88,14 @@ app.post("/qualitycheck", async (req, res) => {
     console.log(response.data.choices[0].text);
     return res.send({ message: response.data.choices[0].text });
   } catch (error) {
-
-
+    console.log("entered here");
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+      res.send("Error");
+    } else {
       console.log(error.message);
-    
+    }
   }
 });
 
