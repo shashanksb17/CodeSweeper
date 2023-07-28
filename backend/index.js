@@ -27,7 +27,8 @@ app.post("/convert", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Convert the following code into ${targetLanguage} code:\n\n${codeInput}`,
+      prompt: `Convert the following code into ${targetLanguage} code:\n\n${codeInput}
+      (Note: Please keep the explanation concise. If it exceeds 60 letters including spaces, wrap the text to the next line.)`,
       max_tokens: 2000,
     });
     console.log(response.data.choices[0].text);
@@ -53,7 +54,8 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Debug the following code:\n\n${codeInput}.`,
+      prompt: `Debug the following code:\n\n${codeInput}.
+      (Note: Please keep the explanation concise. If it exceeds 60 letters including spaces, wrap the text to the next line.)`,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
