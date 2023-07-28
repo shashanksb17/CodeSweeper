@@ -30,7 +30,7 @@ The application offers the following features:
 The Code Conversion, Debugging, and Quality Check Application consists of two main components: the frontend and the backend.
 
 ### Frontend
-The frontend is responsible for providing the user interface and handling user interactions. It is built using HTML, CSS, and JavaScript, with the support of the Monaco Editor for code input.
+The frontend is responsible for providing the user interface and handling user interactions. It is built using React.js with the support of the Monaco Editor for code input.
 
 The frontend performs the following tasks:
 - Displays the code editor for users to input their code.
