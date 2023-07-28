@@ -55,7 +55,7 @@ app.post("/debug", async (req, res) => {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `Debug the following code:\n\n${codeInput}.
-      (Note: Please keep the explanation concise. If it exceeds 60 letters including spaces, wrap the text to the next line.)`,
+      (Note: Please no explanation only the output of the code dhould be returned.)`,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
