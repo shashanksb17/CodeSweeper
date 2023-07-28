@@ -1,4 +1,3 @@
-
 const { Configuration, OpenAIApi } = require("openai");
 
 require("dotenv").config();
@@ -93,9 +92,11 @@ app.post("/qualitycheck", async (req, res) => {
       - Point 3: ...
       - ...
       
-      (Note: Please keep the explanation concise. If it exceeds 65 words, wrap the text to the next line.)`,
+      (Note: Please keep the explanation concise. If it exceeds 60 letters including spaces, wrap the text to the next line.)`,
       max_tokens: 1000,
     });
+
+    //changes added
 
     console.log(response.data.choices[0].text);
     return res.send({ message: response.data.choices[0].text });
