@@ -28,8 +28,8 @@ app.post("/convert", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `convert ${codeInput} this code into ${targetLanguage} code`,
-      max_tokens: 1000,
+      prompt: `Convert the following code into ${targetLanguage} code:\n\n${codeInput}`,
+      max_tokens: 2000,
     });
     console.log(response.data.choices[0].text);
     res.send({ message: response.data.choices[0].text });
@@ -54,7 +54,7 @@ app.post("/debug", async (req, res) => {
     }
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please debug this code ${codeInput}.`,
+      prompt: `Debug the following code:\n\n${codeInput}.`,
       max_tokens: 1000,
     });
     console.log(response.data.choices[0].text);
@@ -81,7 +81,19 @@ app.post("/qualitycheck", async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Please check the quality of this following code: ${codeInput} and explain how code can be improved in 2-4 pointer each pionter has 4-5 words and rate the code with max points of 10`,
+      prompt: `Please rate the quality of the following code out of ten and provide a brief explanation with pointers:
+
+      ${codeInput}
+      
+      Quality Rating: ___/10
+      
+      Explanation:
+      - Point 1: ...
+      - Point 2: ...
+      - Point 3: ...
+      - ...
+      
+      (Note: Please keep the explanation concise. If it exceeds 65 words, wrap the text to the next line.)`,
       max_tokens: 1000,
     });
 
